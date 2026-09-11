@@ -206,4 +206,23 @@ header a.btn, header .btn-primary {
     background-color: #0284c7 !important;
     color: #ffffff !important;
     box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+/* --- Force "Start Your Journey" & Hero Buttons to Highlight --- */
+header a, 
+.hero a, 
+header button, 
+.hero button {
+    background-color: #0284c7 !important;
+    color: #ffffff !important;
+    padding: 12px 28px !important;
+    border-radius: 8px !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.5) !important;
+    border: 2px solid #38bdf8 !important;
+}
+
+header a:hover, 
+.hero a:hover {
+    background-color: #0369a1 !important;
 }
