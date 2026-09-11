@@ -1,165 +1,114 @@
+/* ==========================================
+   Global Styles & Variables
+   ================================          */
 :root {
     --primary: #0284c7;
     --primary-dark: #0369a1;
-    --accent: #0ea5e9;
     --dark: #0f172a;
-    --light: #f8fafc;
     --gray: #64748b;
+    --light: #f8fafc;
+    --white: #ffffff;
 }
-body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
     background-color: var(--light);
     color: var(--dark);
     line-height: 1.6;
 }
-/* Navigation Bar */
-nav.navbar {
-    background: white;
-    border-bottom: 1px solid #e2e8f0;
-    padding: 15px 30px;
+
+/* ==========================================
+   Navigation Bar (Desktop Default)
+   ========================================== */
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--dark);
+    padding: 15px 40px;
+    color: var(--white);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
-nav.navbar .logo {
-    font-weight: 800;
-    font-size: 1.25rem;
-    color: var(--primary);
+
+.navbar .logo {
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: bold;
     text-decoration: none;
-    letter-spacing: -0.5px;
-}
-nav.navbar .nav-links {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-nav.navbar .nav-links a {
-    text-decoration: none;
-    color: var(--dark);
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: color 0.2s;
-}
-nav.navbar .nav-links a:hover {
-    color: var(--primary);
-}
-nav.navbar .btn-nav {
-    background: var(--primary);
-    color: white !important;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: 600 !important;
+    letter-spacing: 0.5px;
 }
 
-.main-container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.btn-nav {
+    background-color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.btn-nav:hover {
+    background-color: var(--primary-dark);
+    color: var(--white) !important;
+}
+
+/* ==========================================
+   General Components & Grids
+   ========================================== */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
 .section-title {
-    text-align: center;
     font-size: 2.2rem;
     margin-bottom: 10px;
     color: var(--dark);
 }
+
 .grid-3 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin-bottom: 50px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 30px;
 }
-.card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-    border-top: 4px solid var(--primary);
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 30px;
 }
-.card h3 { margin-top: 0; color: var(--dark); }
-.card p { color: var(--gray); font-size: 0.95rem; }
 
-/* Tables */
-.table-wrapper {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    margin-bottom: 40px;
-}
-table { width: 100%; border-collapse: collapse; text-align: left; }
-th, td { padding: 15px 20px; border-bottom: 1px solid #e2e8f0; }
-th { background-color: #f1f5f9; color: var(--dark); font-weight: 700; }
-
-/* Forms */
-.form-section {
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.form-group { margin-bottom: 20px; }
-.form-group.full { grid-column: span 2; }
-.form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
-.form-group input, .form-group select, .form-group textarea {
-    width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 1rem;
-}
-.btn-submit {
-    background-color: var(--primary); color: white; padding: 14px; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 700; width: 100%;
-}
-.btn-submit:hover { background-color: var(--primary-dark); }
-/* --- Mobile Responsive Media Queries (Screens under 768px) --- */
-@media (max-width: 768px) {
-    /* Stack grid elements into a single column */
-    .grid-3, .grid-2 {
-        grid-template-columns: 1fr !important;
-        gap: 20px;
-    }
-
-    /* Stack navigation cleanly on mobile */
-    .navbar {
-        flex-direction: column;
-        align-items: center;
-        padding: 15px;
-        gap: 10px;
-    }
-
-    .nav-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
-    }
-
-    /* Shrink large headers for mobile screens */
-    header h1 {
-        font-size: 2rem !important;
-    }
-
-    header {
-        padding: 60px 15px !important;
-    }
-
-    /* Prevent tables from breaking layout */
-    .table-wrapper, table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-
-    /* Reduce general container padding */
-    .main-container {
-        padding: 20px 15px;
-    }
-}
-/* --- Mobile Sidebar Navigation Styles --- */
+/* ==========================================
+   Mobile Menu Toggle Button (Hidden on Desktop)
+   ========================================== */
 .menu-toggle {
-    display: none; /* Hidden on desktop */
+    display: none;
     background: none;
     border: none;
     font-size: 1.8rem;
@@ -167,33 +116,56 @@ th { background-color: #f1f5f9; color: var(--dark); font-weight: 700; }
     cursor: pointer;
 }
 
+/* ==========================================
+   Mobile Responsive Media Query (Screens <= 768px)
+   ========================================== */
 @media (max-width: 768px) {
+    /* Show hamburger button on mobile */
     .menu-toggle {
-        display: block; /* Show hamburger icon on mobile */
+        display: block;
     }
 
+    /* Transform navigation links into a slide-out side drawer */
     .nav-links {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         position: fixed;
         top: 0;
         right: -100%; /* Hidden off-screen by default */
-        width: 250px;
+        width: 260px;
         height: 100vh;
-        background: #0f172a; /* Matches your theme */
-        padding: 80px 20px 20px 20px;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
-        transition: right 0.3s ease-in-out; /* Smooth sliding effect */
-        z-index: 1000;
+        background: var(--dark);
+        padding: 80px 25px 25px 25px;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.4);
+        transition: right 0.3s ease-in-out;
+        z-index: 999;
     }
 
-    /* When the JS toggles the 'active' class, slide it into view */
+    /* Active state triggered by JavaScript */
     .nav-links.active {
-        right: 0;
+        right: 0 !important;
+    }
+
+    .nav-links a {
+        font-size: 1.1rem;
+        width: 100%;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .navbar {
         justify-content: space-between;
         padding: 15px 20px;
+    }
+
+    /* Stack grids vertically on mobile */
+    .grid-3, .grid-2 {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    .main-container {
+        padding: 25px 15px;
     }
 }
