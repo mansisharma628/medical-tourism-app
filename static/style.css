@@ -168,4 +168,42 @@ body {
     .main-container {
         padding: 25px 15px;
     }
+/* --- Fix Form Inputs on Mobile --- */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+    width: 100% !important;
+    padding: 12px 15px !important;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    display: block;
+}
+
+/* Fix submit and call-to-action buttons */
+button[type="submit"], 
+.btn-primary, 
+.btn-nav {
+    display: inline-block;
+    background-color: var(--primary) !important;
+    color: white !important;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Ensure 'Start Your Journey' or hero buttons stand out clearly */
+header a.btn, header .btn-primary {
+    background-color: #0284c7 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
 }
