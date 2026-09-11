@@ -113,3 +113,47 @@ th { background-color: #f1f5f9; color: var(--dark); font-weight: 700; }
     background-color: var(--primary); color: white; padding: 14px; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 700; width: 100%;
 }
 .btn-submit:hover { background-color: var(--primary-dark); }
+/* --- Mobile Responsive Media Queries (Screens under 768px) --- */
+@media (max-width: 768px) {
+    /* Stack grid elements into a single column */
+    .grid-3, .grid-2 {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    /* Stack navigation cleanly on mobile */
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    /* Shrink large headers for mobile screens */
+    header h1 {
+        font-size: 2rem !important;
+    }
+
+    header {
+        padding: 60px 15px !important;
+    }
+
+    /* Prevent tables from breaking layout */
+    .table-wrapper, table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    /* Reduce general container padding */
+    .main-container {
+        padding: 20px 15px;
+    }
+}
