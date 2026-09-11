@@ -36,19 +36,29 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="/" class="logo">GLOBALCARE HEALTH</a>
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/about">About Us</a>
-            <a href="/hospitals">Hospitals</a>
-            <a href="/doctors">Doctors</a>
-            <a href="/treatments">Treatments</a>
-            <a href="/cost-estimator" style="color:var(--primary);">Cost Estimator</a>
-            <a href="/admin" style="color: var(--gray); font-size: 0.85rem;">Admin Portal</a>
-            <a href="/contact" class="btn-nav">Free Consultation</a>
-        </div>
-    </nav>
+    <a href="/" class="logo">GLOBALCARE HEALTH</a>
+    
+    <!-- Hamburger Toggle Button -->
+    <button class="menu-toggle" onclick="toggleMobileMenu()">&#9776;</button>
 
+    <div class="nav-links" id="navLinks">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/hospitals">Hospitals</a>
+        <a href="/doctors">Doctors</a>
+        <a href="/treatments">Treatments</a>
+        <a href="/cost-estimator">Cost Estimator</a>
+        <a href="/admin" style="color: var(--gray); font-size: 0.85rem;">Admin Portal</a>
+        <a href="/contact" class="btn-nav">Free Consultation</a>
+    </div>
+</nav>
+
+<script>
+    function toggleMobileMenu() {
+        const nav = document.getElementById('navLinks');
+        nav.classList.toggle('active');
+    }
+</script>
     <main class="main-container">
         <h2 class="section-title">Transparent Cost Estimator</h2>
         <p style="text-align: center; color: var(--gray); max-width: 700px; margin: 0 auto 30px;">Select your home country's currency to view estimated package prices across our network instantly.</p>

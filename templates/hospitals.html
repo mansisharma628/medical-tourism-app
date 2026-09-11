@@ -7,19 +7,30 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <nav class="navbar">
-        <a href="/" class="logo">GLOBALCARE HEALTH</a>
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/about">About Us</a>
-            <a href="/hospitals" style="color:var(--primary);">Hospitals</a>
-            <a href="/doctors">Doctors</a>
-            <a href="/treatments">Treatments</a>
-            <a href="/cost-estimator">Cost Estimator</a>
-            <a href="/contact" class="btn-nav">Free Consultation</a>
-        </div>
-    </nav>
+   <nav class="navbar">
+    <a href="/" class="logo">GLOBALCARE HEALTH</a>
+    
+    <!-- Hamburger Toggle Button -->
+    <button class="menu-toggle" onclick="toggleMobileMenu()">&#9776;</button>
 
+    <div class="nav-links" id="navLinks">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/hospitals">Hospitals</a>
+        <a href="/doctors">Doctors</a>
+        <a href="/treatments">Treatments</a>
+        <a href="/cost-estimator">Cost Estimator</a>
+        <a href="/admin" style="color: var(--gray); font-size: 0.85rem;">Admin Portal</a>
+        <a href="/contact" class="btn-nav">Free Consultation</a>
+    </div>
+</nav>
+
+<script>
+    function toggleMobileMenu() {
+        const nav = document.getElementById('navLinks');
+        nav.classList.toggle('active');
+    }
+</script>
     <main class="main-container">
         <h2 class="section-title">Our Partner Hospitals & Infrastructure</h2>
         <p style="text-align: center; color: var(--gray); max-width: 700px; margin: 0 auto 50px;">We partner with state-of-the-art medical institutions equipped with advanced robotic surgery, ICU facilities, and international patient lounges.</p>

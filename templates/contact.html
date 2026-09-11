@@ -8,18 +8,29 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="/" class="logo">GLOBALCARE HEALTH</a>
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/about">About Us</a>
-            <a href="/hospitals">Hospitals</a>
-            <a href="/doctors">Doctors</a>
-            <a href="/treatments">Treatments</a>
-            <a href="/cost-estimator">Cost Estimator</a>
-            <a href="/contact" class="btn-nav">Free Consultation</a>
-        </div>
-    </nav>
+    <a href="/" class="logo">GLOBALCARE HEALTH</a>
+    
+    <!-- Hamburger Toggle Button -->
+    <button class="menu-toggle" onclick="toggleMobileMenu()">&#9776;</button>
 
+    <div class="nav-links" id="navLinks">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/hospitals">Hospitals</a>
+        <a href="/doctors">Doctors</a>
+        <a href="/treatments">Treatments</a>
+        <a href="/cost-estimator">Cost Estimator</a>
+        <a href="/admin" style="color: var(--gray); font-size: 0.85rem;">Admin Portal</a>
+        <a href="/contact" class="btn-nav">Free Consultation</a>
+    </div>
+</nav>
+
+<script>
+    function toggleMobileMenu() {
+        const nav = document.getElementById('navLinks');
+        nav.classList.toggle('active');
+    }
+</script>
     <main class="main-container">
         <section class="form-section">
             <h2 style="margin-top:0; text-align:center; color: var(--primary);">Request Your Free Treatment Evaluation</h2>

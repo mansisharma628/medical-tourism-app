@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard & CMS | GlobalCare Health</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <nav class="navbar">
         <a href="/" class="logo">GLOBALCARE HEALTH [ADMIN CMS]</a>
+	<button class="menu-toggle" id="menuToggle">&#9776;</button>
         <div class="nav-links">
             <a href="/">View Live Site</a>
             <a href="/admin" style="color: var(--primary); font-weight: bold;">Admin Portal</a>
         </div>
     </nav>
+    <script>
+    document.getElementById('menuToggle').addEventListener('click', function() {
+        const nav = document.getElementById('navLinks');
+        nav.classList.toggle('active');
+    });
+</script>
 
     <main class="main-container" style="max-width: 1200px;">
         
