@@ -157,3 +157,43 @@ th { background-color: #f1f5f9; color: var(--dark); font-weight: 700; }
         padding: 20px 15px;
     }
 }
+/* --- Mobile Sidebar Navigation Styles --- */
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: white;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Show hamburger icon on mobile */
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%; /* Hidden off-screen by default */
+        width: 250px;
+        height: 100vh;
+        background: #0f172a; /* Matches your theme */
+        padding: 80px 20px 20px 20px;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+        transition: right 0.3s ease-in-out; /* Smooth sliding effect */
+        z-index: 1000;
+    }
+
+    /* When the JS toggles the 'active' class, slide it into view */
+    .nav-links.active {
+        right: 0;
+    }
+
+    .navbar {
+        justify-content: space-between;
+        padding: 15px 20px;
+    }
+}
