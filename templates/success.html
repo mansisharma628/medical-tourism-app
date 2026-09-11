@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inquiry Received - GlobalCare</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh; background: #f1f5f9;">
+    <div style="background: white; padding: 50px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; max-width: 500px;">
+        <h1 style="color: #16a34a; margin-top:0;">Inquiry Logged Successfully!</h1>
+        <p>Thank you, <strong>{{ name }}</strong>. Your request for <strong>{{ treatment }}</strong> in <strong>{{ destination }}</strong> has been saved securely.</p>
+        <p style="color: var(--gray); font-size: 0.95rem;">Our medical liaison team will review your report and reach out to you shortly.</p>
+        <a href="/" class="btn-submit" style="display:block; text-decoration:none; margin-top:30px; text-align:center;">Return to Homepage</a>
+    </div>
+</body>
+</html>

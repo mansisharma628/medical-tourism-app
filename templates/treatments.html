@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Treatments Catalogue | GlobalCare Health</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">GLOBALCARE HEALTH</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/hospitals">Hospitals</a>
+            <a href="/doctors">Doctors</a>
+            <a href="/treatments">Treatments</a>
+            <a href="/cost-estimator">Cost Estimator</a>
+            <a href="/contact" class="btn-nav">Free Consultation</a>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <h2 class="section-title">Treatments Catalogue</h2>
+        <p style="text-align: center; color: var(--gray); max-width: 700px; margin: 0 auto 50px;">Explore high-demand procedures available through our accredited global network.</p>
+        
+        <div class="grid-3">
+            <div class="card">
+                <h3>Cardiology & Heart Surgery</h3>
+                <p>Includes Coronary Artery Bypass Grafting (CABG), valve replacements, and angioplasty performed in advanced cardiac catheterization labs.</p>
+            </div>
+            <div class="card">
+                <h3>Orthopedic & Joint Replacement</h3>
+                <p>Total knee replacement, hip arthroplasty, and spine surgeries utilizing computer-assisted navigation systems.</p>
+            </div>
+            <div class="card">
+                <h3>IVF & Fertility Care</h3>
+                <p>Comprehensive reproductive endocrinology services including IVF, ICSI, and genetic embryo testing with high success rates.</p>
+            </div>
+            <div class="card">
+                <h3>Advanced Dentistry & Aesthetics</h3>
+                <p>Full mouth dental implants, porcelain veneers, and reconstructive cosmetic surgeries.</p>
+            </div>
+            <div class="card">
+                <h3>Oncology & Cancer Treatment</h3>
+                <p>Multi-modality cancer care including targeted radiation therapy, bone marrow transplants, and specialized chemotherapy.</p>
+            </div>
+            <div class="card">
+                <h3>Organ Transplants</h3>
+                <p>Kidney and liver transplant procedures backed by rigorous donor matching protocols and dedicated recovery ICUs.</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

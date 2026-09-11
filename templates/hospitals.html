@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Partner Hospitals | GlobalCare Health</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">GLOBALCARE HEALTH</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/hospitals" style="color:var(--primary);">Hospitals</a>
+            <a href="/doctors">Doctors</a>
+            <a href="/treatments">Treatments</a>
+            <a href="/cost-estimator">Cost Estimator</a>
+            <a href="/contact" class="btn-nav">Free Consultation</a>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <h2 class="section-title">Our Partner Hospitals & Infrastructure</h2>
+        <p style="text-align: center; color: var(--gray); max-width: 700px; margin: 0 auto 50px;">We partner with state-of-the-art medical institutions equipped with advanced robotic surgery, ICU facilities, and international patient lounges.</p>
+        
+        <div class="grid-3">
+            {% for h in hospitals %}
+            <div class="card">
+                <h3>{{ h.name }}</h3>
+                <p><strong style="color: var(--dark);">Location:</strong> {{ h.location }}</p>
+                <p>{{ h.description }}</p>
+            </div>
+            {% else %}
+            <p style="color: var(--gray); text-align: center; grid-column: span 3;">No partner hospitals listed yet. Add them via the admin panel.</p>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

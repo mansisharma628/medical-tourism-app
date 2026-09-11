@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact & Consultation | GlobalCare Health</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">GLOBALCARE HEALTH</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/hospitals">Hospitals</a>
+            <a href="/doctors">Doctors</a>
+            <a href="/treatments">Treatments</a>
+            <a href="/cost-estimator">Cost Estimator</a>
+            <a href="/contact" class="btn-nav">Free Consultation</a>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <section class="form-section">
+            <h2 style="margin-top:0; text-align:center; color: var(--primary);">Request Your Free Treatment Evaluation</h2>
+            <p style="text-align:center; color: var(--gray); margin-bottom:30px;">Submit your medical details securely. Our doctors will review your case within 24 hours.</p>
+            
+            <form action="/contact" method="POST" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Patient Full Name *</label>
+                        <input type="text" name="name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" name="email" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone / WhatsApp *</label>
+                        <input type="text" name="phone" required placeholder="+1 (555) 234-5678">
+                    </div>
+                    <div class="form-group">
+                        <label>Required Treatment *</label>
+                        <select name="treatment">
+                            <option value="Cardiology & Heart Surgery">Cardiology & Heart Surgery</option>
+                            <option value="Orthopedic & Joint Replacement">Orthopedic & Joint Replacement</option>
+                            <option value="IVF & Fertility Care">IVF & Fertility Care</option>
+                            <option value="Advanced Dentistry">Advanced Dentistry</option>
+                            <option value="Oncology Care">Oncology Care</option>
+                            <option value="Organ Transplant">Organ Transplant</option>
+                        </select>
+                    </div>
+                    <div class="form-group full">
+                        <label>Preferred Destination</label>
+                        <select name="destination">
+                            <option value="Thailand (Apex Medical Center)">Thailand (Apex Medical Center)</option>
+                            <option value="India (Metro Heart & Superspecialty)">India (Metro Heart & Superspecialty)</option>
+                            <option value="Turkey (AcIBadem Health Hub)">Turkey (AcIBadem Health Hub)</option>
+                        </select>
+                    </div>
+                    <div class="form-group full">
+                        <label>Medical Summary / Symptoms</label>
+                        <textarea name="message" rows="4" placeholder="Describe your current diagnosis or treatment requirements..."></textarea>
+                    </div>
+                    <div class="form-group full">
+                        <label>Upload Medical Report / Prescription (PDF, JPG, PNG)</label>
+                        <input type="file" name="medical_report" style="border: none; padding-left: 0;">
+                    </div>
+                    <div class="form-group full">
+                        <button type="submit" class="btn-submit">Submit Confidential Inquiry</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

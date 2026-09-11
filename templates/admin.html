@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard & CMS | GlobalCare Health</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">GLOBALCARE HEALTH [ADMIN CMS]</a>
+        <div class="nav-links">
+            <a href="/">View Live Site</a>
+            <a href="/admin" style="color: var(--primary); font-weight: bold;">Admin Portal</a>
+        </div>
+    </nav>
+
+    <main class="main-container" style="max-width: 1200px;">
+        
+        <!-- Section 1: Patient Leads -->
+        <h2 class="section-title" style="text-align: left; font-size: 1.8rem;">Patient Inquiries & Leads Pipeline</h2>
+        <div class="table-wrapper" style="margin-bottom: 60px;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Patient Name</th>
+                        <th>Contact</th>
+                        <th>Treatment / Destination</th>
+                        <th>Medical Report</th>
+                        <th>Status Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lead in leads %}
+                    <tr>
+                        <td>{{ lead.date }}</td>
+                        <td><strong>{{ lead.name }}</strong></td>
+                        <td>{{ lead.email }}<br><small>{{ lead.phone }}</small></td>
+                        <td>{{ lead.treatment }}<br><small style="color: var(--gray);">Dest: {{ lead.destination }}</small></td>
+                        <td>
+                            {% if lead.filename %}
+                                <a href="{{ url_for('uploaded_file', filename=lead.filename) }}" target="_blank" style="color: var(--primary); font-weight: 600;">Download Report</a>
+                            {% else %}
+                                <span style="color: var(--gray);">No File</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form action="/update-status/{{ lead.id }}" method="POST" style="display: flex; gap: 5px;">
+                                <select name="status" style="padding: 4px; border-radius: 4px; font-size: 0.85rem;">
+                                    <option value="New Lead" {% if lead.status == 'New Lead' %}selected{% endif %}>New Lead</option>
+                                    <option value="Doctor Reviewing" {% if lead.status == 'Doctor Reviewing' %}selected{% endif %}>Doctor Reviewing</option>
+                                    <option value="Quote Sent" {% if lead.status == 'Quote Sent' %}selected{% endif %}>Quote Sent</option>
+                                    <option value="Booked / Traveling" {% if lead.status == 'Booked / Traveling' %}selected{% endif %}>Booked / Traveling</option>
+                                </select>
+                                <button type="submit" style="background: var(--primary); color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">Save</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: var(--gray); padding: 30px;">No leads logged yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Section 2: Content Management Forms -->
+        <h2 class="section-title" style="text-align: left; font-size: 1.8rem;">Website Content Management (CMS)</h2>
+        <p style="color: var(--gray); margin-bottom: 30px;">Add doctors, partner hospitals, and client testimonials instantly without touching code.</p>
+
+        <div class="grid-3" style="align-items: start;">
+            
+            <!-- Add Doctor Form -->
+            <div class="card" style="border-top-color: #0284c7;">
+                <h3>Add New Doctor</h3>
+                <form action="/admin/add-doctor" method="POST" style="margin-top: 15px;">
+                    <div class="form-group"><label>Doctor Name</label><input type="text" name="name" required placeholder="Dr. John Smith"></div>
+                    <div class="form-group"><label>Specialty</label><input type="text" name="specialty" required placeholder="Cardiologist"></div>
+                    <div class="form-group"><label>Experience</label><input type="text" name="experience" required placeholder="18+ Years"></div>
+                    <div class="form-group"><label>Background / Fellowship</label><textarea name="background" rows="2" required placeholder="FACC (USA), Johns Hopkins trained."></textarea></div>
+                    <button type="submit" class="btn-submit" style="padding: 10px; font-size: 0.9rem;">Add Doctor</button>
+                </form>
+            </div>
+
+            <!-- Add Hospital Form -->
+            <div class="card" style="border-top-color: #0ea5e9;">
+                <h3>Add Partner Hospital</h3>
+                <form action="/admin/add-hospital" method="POST" style="margin-top: 15px;">
+                    <div class="form-group"><label>Hospital Name</label><input type="text" name="name" required placeholder="Global Care Center"></div>
+                    <div class="form-group"><label>Location</label><input type="text" name="location" required placeholder="Bangkok, Thailand"></div>
+                    <div class="form-group"><label>Description</label><textarea name="description" rows="4" required placeholder="JCI-accredited facility with robotic suites..."></textarea></div>
+                    <button type="submit" class="btn-submit" style="padding: 10px; font-size: 0.9rem;">Add Hospital</button>
+                </form>
+            </div>
+
+            <!-- Add Testimonial Form -->
+            <div class="card" style="border-top-color: #10b981;">
+                <h3>Add Patient Testimonial</h3>
+                <form action="/admin/add-testimonial" method="POST" style="margin-top: 15px;">
+                    <div class="form-group"><label>Patient Name</label><input type="text" name="patient_name" required placeholder="Mark Taylor"></div>
+                    <div class="form-group"><label>Country</label><input type="text" name="country" required placeholder="Australia"></div>
+                    <div class="form-group"><label>Review Quote</label><textarea name="review" rows="4" required placeholder="The coordination was seamless..."></textarea></div>
+                    <button type="submit" class="btn-submit" style="padding: 10px; font-size: 0.9rem; background: #10b981;">Add Testimonial</button>
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+</body>
+</html>

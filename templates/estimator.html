@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cost Estimator & Global Currencies | GlobalCare Health</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        // Exchange rates relative to 1 USD
+        const rates = {
+            USD: { name: "United States Dollar ($)", symbol: "$", rate: 1.0 },
+            EUR: { name: "Euro (€)", symbol: "€", rate: 0.92 },
+            GBP: { name: "British Pound (£)", symbol: "£", rate: 0.79 },
+            AUD: { name: "Australian Dollar (A$)", symbol: "A$", rate: 1.52 },
+            CAD: { name: "Canadian Dollar (C$)", symbol: "C$", rate: 1.36 },
+            INR: { name: "Indian Rupee (₹)", symbol: "₹", rate: 83.2 },
+            AED: { name: "UAE Dirham (AED)", symbol: "AED ", rate: 3.67 },
+            SGD: { name: "Singapore Dollar (S$)", symbol: "S$", rate: 1.34 },
+            JPY: { name: "Japanese Yen (¥)", symbol: "¥", rate: 155.0 },
+            CHF: { name: "Swiss Franc (CHF)", symbol: "CHF ", rate: 0.89 }
+        };
+
+        function updateCurrency() {
+            const currencyKey = document.getElementById('currencySelector').value;
+            const currencyObj = rates[currencyKey];
+            const symbol = currencyObj.symbol;
+            const rate = currencyObj.rate;
+
+            document.querySelectorAll('.price-val').forEach(el => {
+                const baseUSD = parseFloat(el.getAttribute('data-usd'));
+                const converted = Math.round(baseUSD * rate).toLocaleString();
+                el.innerText = symbol + converted;
+            });
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">GLOBALCARE HEALTH</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/hospitals">Hospitals</a>
+            <a href="/doctors">Doctors</a>
+            <a href="/treatments">Treatments</a>
+            <a href="/cost-estimator" style="color:var(--primary);">Cost Estimator</a>
+            <a href="/admin" style="color: var(--gray); font-size: 0.85rem;">Admin Portal</a>
+            <a href="/contact" class="btn-nav">Free Consultation</a>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <h2 class="section-title">Transparent Cost Estimator</h2>
+        <p style="text-align: center; color: var(--gray); max-width: 700px; margin: 0 auto 30px;">Select your home country's currency to view estimated package prices across our network instantly.</p>
+        
+        <!-- Global Currency Selector Dropdown -->
+        <div style="text-align: right; margin-bottom: 20px;">
+            <label style="font-weight: 600; margin-right: 10px;">Select Currency:</label>
+            <select id="currencySelector" onchange="updateCurrency()" style="padding: 8px 15px; border-radius: 6px; border: 1px solid #cbd5e1; font-weight: 600; background: white;">
+                <script>
+                    // Populating options dynamically via script for clean rendering
+                    const dropdown = document.currentScript.parentElement;
+                    // Fallback render loop if needed, or static options below
+                </script>
+                <option value="USD">United States Dollar ($)</option>
+                <option value="EUR">Euro (€)</option>
+                <option value="GBP">British Pound (£)</option>
+                <option value="AUD">Australian Dollar (A$)</option>
+                <option value="CAD">Canadian Dollar (C$)</option>
+                <option value="INR">Indian Rupee (₹)</option>
+                <option value="AED">UAE Dirham (AED)</option>
+                <option value="SGD">Singapore Dollar (S$)</option>
+                <option value="JPY">Japanese Yen (¥)</option>
+                <option value="CHF">Swiss Franc (CHF)</option>
+            </select>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Medical Procedure</th>
+                        <th>US / UK Average Cost</th>
+                        <th>GlobalCare Network Package Price</th>
+                        <th>Estimated Savings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Heart Bypass Surgery (CABG)</strong></td>
+                        <td><span class="price-val" data-usd="123000">$123,000</span></td>
+                        <td><span class="price-val" style="color: #16a34a; font-weight: bold;" data-usd="18500">$18,500</span></td>
+                        <td style="color: #16a34a; font-weight: bold;">Save ~85%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Orthopedic Knee Replacement</strong></td>
+                        <td><span class="price-val" data-usd="50000">$50,000</span></td>
+                        <td><span class="price-val" style="color: #16a34a; font-weight: bold;" data-usd="13000">$13,000</span></td>
+                        <td style="color: #16a34a; font-weight: bold;">Save ~74%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Advanced IVF / Fertility Cycle</strong></td>
+                        <td><span class="price-val" data-usd="25000">$25,000</span></td>
+                        <td><span class="price-val" style="color: #16a34a; font-weight: bold;" data-usd="7000">$7,000</span></td>
+                        <td style="color: #16a34a; font-weight: bold;">Save ~71%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Full Dental Implants</strong></td>
+                        <td><span class="price-val" data-usd="35000">$35,000</span></td>
+                        <td><span class="price-val" style="color: #16a34a; font-weight: bold;" data-usd="9500">$9,500</span></td>
+                        <td style="color: #16a34a; font-weight: bold;">Save ~72%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="/contact" style="background: var(--primary); color: white; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 700;">Request Custom Quote for Your Case</a>
+        </div>
+    </main>
+</body>
+</html>

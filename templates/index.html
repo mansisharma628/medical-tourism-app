@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GlobalCare Health | Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">GLOBALCARE HEALTH</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/hospitals">Hospitals</a>
+            <a href="/doctors">Doctors</a>
+            <a href="/treatments">Treatments</a>
+            <a href="/cost-estimator">Cost Estimator</a>
+            <a href="/admin" style="color: var(--gray); font-size: 0.85rem;">Admin Portal</a>
+            <a href="/contact" class="btn-nav">Free Consultation</a>
+        </div>
+    </nav>
+
+    <header style="background: linear-gradient(135deg, #0f172a, #1e293b); color: white; padding: 100px 20px; text-align: center;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h1 style="font-size: 3rem; margin-bottom: 20px;">World-Class Healthcare, Without Borders</h1>
+            <p style="font-size: 1.2rem; color: #94a3b8; margin-bottom: 30px;">Partnering with JCI-accredited elite hospitals to provide seamless medical travel, transparent pricing, and top-tier specialist care.</p>
+            <a href="/contact" style="background: var(--accent); color: #0f172a; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 700;">Start Your Journey</a>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <h2 class="section-title">Why Patients Choose Us</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>JCI-Accredited Hospitals</h3>
+                <p>Treatment administered in world-class facilities matching exact Western safety and hygiene standards.</p>
+            </div>
+            <div class="card">
+                <h3>End-to-End Coordination</h3>
+                <p>From medical visa paperwork and airport VIP transfers to luxury post-op recovery suites.</p>
+            </div>
+            <div class="card">
+                <h3>Significant Savings</h3>
+                <p>Save up to 70% on complex surgeries compared to domestic treatment expenses with zero hidden costs.</p>
+            </div>
+        </div>
+
+        <!-- Dynamic Testimonials Section -->
+        <h2 class="section-title" style="margin-top: 60px;">Patient Testimonials</h2>
+        <div class="grid-3">
+            {% for t in testimonials %}
+            <div class="card">
+                <p style="font-style: italic;">"{{ t.review }}"</p>
+                <p style="font-weight: bold; color: var(--primary); margin-bottom:0;">— {{ t.patient_name }} ({{ t.country }})</p>
+            </div>
+            {% else %}
+            <p style="color: var(--gray); text-align: center; grid-column: span 3;">No testimonials added yet. You can add them from the admin panel.</p>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>
