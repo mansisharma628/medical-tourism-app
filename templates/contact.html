@@ -30,31 +30,30 @@
         }
     </script>
 
-    <!-- Main Content -->
+    <!-- Main Content-->
     <main class="main-container">
         <h2 class="section-title" style="text-align: center;">Request Your Free Treatment Evaluation</h2>
-        <p style="text-align: center; color: var(--gray); max-width: 700px; margin: 0 auto 30px auto;">Submit your medical details securely. Our doctors will review your case within 24 hours.</p>
+        <p style="text-align: center; color: var(--gray); max-width: 600px; margin: 0 auto 30px auto;">Submit your medical details securely. Our doctors will review your case within 24 hours.</p>
 
-        <!-- Centered Form Container -->
-        <div class="form-container">
-            <form action="/submit" method="POST" enctype="multipart/form-data">
-                
-                <div class="form-group">
+        <div class="form-card">
+            <form action="/submit" method="POST" enctype="multipart/form-data" class="styled-form">
+
+                <div class="input-group">
                     <label>Patient Full Name *</label>
                     <input type="text" name="name" required placeholder="John Doe">
                 </div>
 
-                <div class="form-group">
+                <div class="input-group">
                     <label>Email Address *</label>
                     <input type="email" name="email" required placeholder="john@example.com">
                 </div>
 
-                <div class="form-group">
+                <div class="input-group">
                     <label>Phone / WhatsApp *</label>
                     <input type="text" name="phone" required placeholder="+1 (555) 234-5678">
                 </div>
 
-                <div class="form-group">
+                <div class="input-group">
                     <label>Required Treatment *</label>
                     <select name="treatment">
                         <option value="Cardiology & Heart Surgery">Cardiology & Heart Surgery</option>
@@ -66,7 +65,7 @@
                     </select>
                 </div>
 
-                <div class="form-group full">
+                <div class="input-group">
                     <label>Preferred Destination</label>
                     <select name="destination">
                         <option value="Thailand (Apex Medical Center)">Thailand (Apex Medical Center)</option>
@@ -75,23 +74,23 @@
                     </select>
                 </div>
 
-                <div class="form-group full">
+                <div class="input-group full-width">
                     <label>Medical Summary / Symptoms</label>
                     <textarea name="message" rows="4" placeholder="Describe your current diagnosis or treatment requirements..."></textarea>
                 </div>
 
-                <div class="form-group full">
+                <div class="input-group full-width">
                     <label>Upload Medical Report / Prescription (PDF, JPG, PNG)</label>
                     <input type="file" name="medical_report" style="border: none; padding-left: 0;">
                 </div>
 
-                <div class="form-group full">
-                    <button type="submit" class="btn-submit" style="width: 100%; padding: 12px; background-color: var(--primary); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Submit Confidential Inquiry</button>
+                <div class="input-group full-width">
+                    <button type="submit" class="btn-submit">Submit Confidential Inquiry</button>
                 </div>
 
             </form>
         </div>
     </main>
 
-</body>
+    </body>
 </html>
