@@ -1,61 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request Evaluation - GlobalCare Health</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <a href="/" class="logo">GLOBALCARE HEALTH</a>
-        <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
-        <div class="nav-links" id="navLinks">
-            <a href="/">Home</a>
-            <a href="/about">About Us</a>
-            <a href="/hospitals">Hospitals</a>
-            <a href="/doctors">Doctors</a>
-            <a href="/treatments">Treatments</a>
-            <a href="/cost-estimator">Cost Estimator</a>
-            <a href="/contact" class="btn-nav">Free Consultation</a>
-        </div>
-    </nav>
-
-    <script>
-        function toggleMobileMenu() {
-            const nav = document.getElementById('navLinks');
-            nav.classList.toggle('active');
-        }
-    </script>
-
-    <!-- Main Content-->
-    <main class="main-container">
+<main class="main-container">
         <h2 class="section-title" style="text-align: center;">Request Your Free Treatment Evaluation</h2>
         <p style="text-align: center; color: var(--gray); max-width: 600px; margin: 0 auto 30px auto;">Submit your medical details securely. Our doctors will review your case within 24 hours.</p>
 
-        <div class="form-card">
-            <form action="/submit" method="POST" enctype="multipart/form-data" class="styled-form">
-
-                <div class="input-group">
-                    <label>Patient Full Name *</label>
-                    <input type="text" name="name" required placeholder="John Doe">
+        <!-- Centered Card Wrapper -->
+        <div style="max-width: 650px; margin: 0 auto; background: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);">
+            <form action="/submit" method="POST" enctype="multipart/form-data">
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: var(--dark);">Patient Full Name *</label>
+                    <input type="text" name="name" required placeholder="John Doe" style="width: 100%; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem; background-color: var(--light);">
                 </div>
 
-                <div class="input-group">
-                    <label>Email Address *</label>
-                    <input type="email" name="email" required placeholder="john@example.com">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: var(--dark);">Email Address *</label>
+                    <input type="email" name="email" required placeholder="john@example.com" style="width: 100%; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem; background-color: var(--light);">
                 </div>
 
-                <div class="input-group">
-                    <label>Phone / WhatsApp *</label>
-                    <input type="text" name="phone" required placeholder="+1 (555) 234-5678">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: var(--dark);">Phone / WhatsApp *</label>
+                    <input type="text" name="phone" required placeholder="+1 (555) 234-5678" style="width: 100%; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem; background-color: var(--light);">
                 </div>
 
-                <div class="input-group">
-                    <label>Required Treatment *</label>
-                    <select name="treatment">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: var(--dark);">Required Treatment *</label>
+                    <select name="treatment" style="width: 100%; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem; background-color: var(--light);">
                         <option value="Cardiology & Heart Surgery">Cardiology & Heart Surgery</option>
                         <option value="Orthopedic & Joint Replacement">Orthopedic & Joint Replacement</option>
                         <option value="IVF & Fertility Care">IVF & Fertility Care</option>
@@ -65,32 +33,29 @@
                     </select>
                 </div>
 
-                <div class="input-group">
-                    <label>Preferred Destination</label>
-                    <select name="destination">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: var(--dark);">Preferred Destination</label>
+                    <select name="destination" style="width: 100%; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem; background-color: var(--light);">
                         <option value="Thailand (Apex Medical Center)">Thailand (Apex Medical Center)</option>
                         <option value="India (Metro Heart & Superspecialty)">India (Metro Heart & Superspecialty)</option>
                         <option value="Turkey (AciBadem Health Hub)">Turkey (AciBadem Health Hub)</option>
                     </select>
                 </div>
 
-                <div class="input-group full-width">
-                    <label>Medical Summary / Symptoms</label>
-                    <textarea name="message" rows="4" placeholder="Describe your current diagnosis or treatment requirements..."></textarea>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: var(--dark);">Medical Summary / Symptoms</label>
+                    <textarea name="message" rows="4" placeholder="Describe your current diagnosis or treatment requirements..." style="width: 100%; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem; background-color: var(--light);"></textarea>
                 </div>
 
-                <div class="input-group full-width">
-                    <label>Upload Medical Report / Prescription (PDF, JPG, PNG)</label>
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: var(--dark);">Upload Medical Report / Prescription (PDF, JPG, PNG)</label>
                     <input type="file" name="medical_report" style="border: none; padding-left: 0;">
                 </div>
 
-                <div class="input-group full-width">
-                    <button type="submit" class="btn-submit">Submit Confidential Inquiry</button>
+                <div>
+                    <button type="submit" style="width: 100%; padding: 14px; background-color: var(--primary); color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer;">Submit Confidential Inquiry</button>
                 </div>
 
             </form>
         </div>
     </main>
-
-    </body>
-</html>
