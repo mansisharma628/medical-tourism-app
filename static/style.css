@@ -225,4 +225,51 @@ header button,
 header a:hover, 
 .hero a:hover {
     background-color: #0369a1 !important;
+/* ==========================================
+   Responsive Form Container Styling
+   ================================          */
+.form-container {
+    max-width: 650px;
+    margin: 40px auto;
+    background: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--dark);
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container select,
+.form-container textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--light);
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-dark) !important;
+}
+
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 20px 15px;
+        margin: 20px 10px;
+        box-shadow: none;
+        background: transparent;
+    }
 }
