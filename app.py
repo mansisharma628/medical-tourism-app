@@ -10,13 +10,6 @@ from email.message import EmailMessage
 app = Flask('globalcare health')
 app.secret_key = 'medi_go_ease'
 
-# --- Configuration for Email Notifications ---
-MAIL_SERVER = 'smtp.gmail.com'
-MAIL_PORT = 465
-MAIL_USERNAME = 'medigoease@gmail.com'          # Replace with your actual email
-MAIL_PASSWORD = 'qwwm jumc bczg hpcz'     # Replace with your Gmail App Password
-ADMIN_EMAIL = 'medigoease@gmail.com'          # Where you want to receive the lead notifications
-
 @app.route('/submit', methods=['POST'])
 def submit_inquiry():
     name = request.form.get('name')
@@ -25,49 +18,46 @@ def submit_inquiry():
     treatment = request.form.get('treatment')
     destination = request.form.get('destination')
     message = request.form.get('message')
+    
+    # 1. Save to SQLite Database (Admin Portal) - This is instant and reliable
+    try:
+        conn = get_db_connection()
+        conn.execute('''
+            INSERT INTO inquiries (name, email, phone, treatment, destination, message)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ''', (name, email, phone, treatment, destination, message))
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        print(f"Database Error: {e}")
 
-    # 1. Save to SQLite Database (Admin Portal)
-    conn = get_db_connection()
-    conn.execute('''
-        INSERT INTO inquiries (name, email, phone, treatment, destination, message)
-        VALUES (?, ?, ?, ?, ?, ?)
-    ''', (name, email, phone, treatment, destination, message))
-    conn.commit()
-    conn.close()
-
-    # 2. Send Email Notification to Admin
+    # 2. Try sending email, but skip/catch if Render's network blocks it
     try:
         msg = EmailMessage()
         msg['Subject'] = f'New Medical Tourism Inquiry from {name}'
         msg['From'] = MAIL_USERNAME
         msg['To'] = ADMIN_EMAIL
-
+        
         email_body = f"""
-        You have received a new patient inquiry from your GlobalCare Health website:
-
-        - Patient Name: {name}
+        New patient inquiry received:
+        - Name: {name}
         - Email: {email}
-        - Phone/WhatsApp: {phone}
-        - Required Treatment: {treatment}
-        - Preferred Destination: {destination}
-        - Medical Summary: {message}
-
-        Log in to your Admin Portal to view full details and manage this case.
+        - Phone: {phone}
+        - Treatment: {treatment}
+        - Destination: {destination}
+        - Message: {message}
         """
         msg.set_content(email_body)
-
-        # Connect to SMTP server securely and send
-        with smtplib.SMTP_SSL(MAIL_SERVER, MAIL_PORT) as server:
+        
+        # Use a short timeout so it never hangs the worker
+        with smtplib.SMTP_SSL(MAIL_SERVER, MAIL_PORT, timeout=5) as server:
             server.login(MAIL_USERNAME, MAIL_PASSWORD)
             server.send_message(msg)
-
     except Exception as e:
-        print(f"Error sending email: {e}")
-        # Even if email fails, database save succeeds so you don't lose the lead!
+        print(f"Email notification skipped/failed: {e}")
 
-    flash('Your inquiry has been submitted successfully! Our doctors will review your case within 24 hours.', 'success')
+    flash('Your inquiry has been submitted successfully!', 'success')
     return redirect(url_for('contact'))
-
 
 # Helper function to connect to SQLite database
 def get_db_connection():
