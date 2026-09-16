@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}GlobalCare Health{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration - GlobalCare Health</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="main-container">
+        <div style="max-width: 450px; margin: 50px auto; background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+            <h2 style="text-align: center; margin-bottom: 20px;">Create Patient Account</h2>
+            
+            <form method="POST">
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 5px;">Full Name</label>
+                    <input type="text" name="name" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 5px;">Email Address</label>
+                    <input type="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 5px;">Phone Number</label>
+                    <input type="text" name="phone" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 5px;">Password</label>
+                    <input type="password" name="password" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px;">
+                </div>
+                <button type="submit" style="width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Register</button>
+            </form>
+            <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
+                Already have an account? <a href="/login" style="color: var(--primary);">Login here</a>
+            </p>
+        </div>
+    </main>
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}GlobalCare Health{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard - GlobalCare Health</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">GLOBALCARE HEALTH</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/logout" style="color: #ef4444; font-weight: bold;">Logout</a>
+        </div>
+    </nav>
+
+    <main class="main-container" style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+        <h2 style="margin-bottom: 10px;">Welcome, {{ user['name'] }}!</h2>
+        <p style="color: var(--gray); margin-bottom: 30px;">Manage your account details and review your medical travel inquiries.</p>
+
+        <div style="background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 30px;">
+            <h3 style="margin-bottom: 15px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">Account Information</h3>
+            <p><strong>Name:</strong> {{ user['name'] }}</p>
+            <p style="margin-top: 10px;"><strong>Email:</strong> {{ user['email'] }}</p>
+            <p style="margin-top: 10px;"><strong>Phone:</strong> {{ user['phone'] }}</p>
+        </div>
+
+        <div style="background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+            <h3 style="margin-bottom: 15px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">Past Bookings & Inquiries</h3>
+            <p style="color: var(--gray);">No past bookings found. Submit a free consultation request to get started!</p>
+            <a href="/contact" class="btn-primary" style="display: inline-block; margin-top: 15px; padding: 10px 20px; background: var(--primary); color: white; border-radius: 6px; text-decoration: none;">Request Evaluation</a>
+        </div>
+    </main>
+</body>
+</html>
+
+{% endblock %}
