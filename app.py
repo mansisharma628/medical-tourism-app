@@ -10,7 +10,16 @@ from email.message import EmailMessage
 app = Flask('globalcare health')
 app.secret_key = 'medi_go_ease'
 
+# CORRECT WAY (Uses environment variable securely):
+resend.api_key = os.environ.get("RESEND_API_KEY")
+ADMIN_EMAIL = "medigoease@gmail.com"  # Replace with your actual inbox email
+
+def get_db_connection():
+    conn = sqlite3.connect('database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 @app.route('/submit', methods=['POST'])
+
 def submit_inquiry():
     name = request.form.get('name')
     email = request.form.get('email')
@@ -31,35 +40,29 @@ def submit_inquiry():
     except Exception as e:
         print(f"Database Error: {e}")
 
-    # 2. Try sending email, but skip/catch if Render's network blocks it
     try:
-        msg = EmailMessage()
-        msg['Subject'] = f'New Medical Tourism Inquiry from {name}'
-        msg['From'] = MAIL_USERNAME
-        msg['To'] = ADMIN_EMAIL
-        
-        email_body = f"""
-        New patient inquiry received:
-        - Name: {name}
-        - Email: {email}
-        - Phone: {phone}
-        - Treatment: {treatment}
-        - Destination: {destination}
-        - Message: {message}
-        """
-        msg.set_content(email_body)
-        
-        # Use a short timeout so it never hangs the worker
-        with smtplib.SMTP_SSL(MAIL_SERVER, MAIL_PORT, timeout=5) as server:
-            server.login(MAIL_USERNAME, MAIL_PASSWORD)
-            server.send_message(msg)
+        params = {
+            "from": "GlobalCare Health <onboarding@resend.dev>",
+            "to": [ADMIN_EMAIL],
+            "subject": f"New Medical Tourism Inquiry from {name}",
+            "html": f"""
+                <h2>New Patient Inquiry Received</h2>
+                <p><b>Name:</b> {name}</p>
+                <p><b>Email:</b> {email}</p>
+                <p><b>Phone:</b> {phone}</p>
+                <p><b>Treatment:</b> {treatment}</p>
+                <p><b>Destination:</b> {destination}</p>
+                <p><b>Message:</b> {message}</p>
+            """
+        }
+        resend.Emails.send(params)
     except Exception as e:
-        print(f"Email notification skipped/failed: {e}")
+        print(f"Email Error: {e}")
 
     flash('Your inquiry has been submitted successfully!', 'success')
     return redirect(url_for('contact'))
 
-# Helper function to connect to SQLite database
+    # Helper function to connect to SQLite database
 def get_db_connection():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
