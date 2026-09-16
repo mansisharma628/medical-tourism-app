@@ -4,6 +4,66 @@ import sqlite3
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
+import smtplib
+from email.message import EmailMessage
+
+# --- Configuration for Email Notifications ---
+MAIL_SERVER = 'smtp.gmail.com'
+MAIL_PORT = 465
+MAIL_USERNAME = 'medigoease@gmail.com'          # Replace with your actual email
+MAIL_PASSWORD = 'qwwm jumc bczg hpcz'     # Replace with your Gmail App Password
+ADMIN_EMAIL = 'medigoease@gmail.com'          # Where you want to receive the lead notifications
+
+@app.route('/submit', methods=['POST'])
+def submit_inquiry():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    phone = request.form.get('phone')
+    treatment = request.form.get('treatment')
+    destination = request.form.get('destination')
+    message = request.form.get('message')
+
+    # 1. Save to SQLite Database (Admin Portal)
+    conn = get_db_connection()
+    conn.execute('''
+        INSERT INTO inquiries (name, email, phone, treatment, destination, message)
+        VALUES (?, ?, ?, ?, ?, ?)
+    ''', (name, email, phone, treatment, destination, message))
+    conn.commit()
+    conn.close()
+
+    # 2. Send Email Notification to Admin
+    try:
+        msg = EmailMessage()
+        msg['Subject'] = f'New Medical Tourism Inquiry from {name}'
+        msg['From'] = MAIL_USERNAME
+        msg['To'] = ADMIN_EMAIL
+
+        email_body = f"""
+        You have received a new patient inquiry from your GlobalCare Health website:
+
+        - Patient Name: {name}
+        - Email: {email}
+        - Phone/WhatsApp: {phone}
+        - Required Treatment: {treatment}
+        - Preferred Destination: {destination}
+        - Medical Summary: {message}
+
+        Log in to your Admin Portal to view full details and manage this case.
+        """
+        msg.set_content(email_body)
+
+        # Connect to SMTP server securely and send
+        with smtplib.SMTP_SSL(MAIL_SERVER, MAIL_PORT) as server:
+            server.login(MAIL_USERNAME, MAIL_PASSWORD)
+            server.send_message(msg)
+
+    except Exception as e:
+        print(f"Error sending email: {e}")
+        # Even if email fails, database save succeeds so you don't lose the lead!
+
+    flash('Your inquiry has been submitted successfully! Our doctors will review your case within 24 hours.', 'success')
+    return redirect(url_for('contact'))
 
 app = Flask(__name__)
 app.secret_key = 'your_secure_secret_key_here' # Needed for session management
