@@ -65,8 +65,8 @@ def submit_inquiry():
     flash('Your inquiry has been submitted successfully! Our doctors will review your case within 24 hours.', 'success')
     return redirect(url_for('contact'))
 
-app = Flask(__name__)
-app.secret_key = 'your_secure_secret_key_here' # Needed for session management
+app = Flask(__GlobalCare Health__)
+app.secret_key = 'medi_go_ease' # Needed for session management
 
 # Helper function to connect to SQLite database
 def get_db_connection():
