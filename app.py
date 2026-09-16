@@ -7,6 +7,9 @@ import sqlite3
 import smtplib
 from email.message import EmailMessage
 
+app = Flask('globalcare health')
+app.secret_key = 'medi_go_ease'
+
 # --- Configuration for Email Notifications ---
 MAIL_SERVER = 'smtp.gmail.com'
 MAIL_PORT = 465
@@ -65,8 +68,6 @@ def submit_inquiry():
     flash('Your inquiry has been submitted successfully! Our doctors will review your case within 24 hours.', 'success')
     return redirect(url_for('contact'))
 
-app = Flask('GlobalCare Health')
-app.secret_key = 'medi_go_ease' # Needed for session management
 
 # Helper function to connect to SQLite database
 def get_db_connection():
