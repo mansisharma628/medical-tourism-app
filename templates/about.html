@@ -1,45 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}GlobalCare Health{% endblock %}
+{% block title %}About Us | GlobalCare Health{% endblock %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | GlobalCare Health</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-   <nav class="navbar">
-    <a href="/" class="logo">GLOBALCARE HEALTH</a>
-    
-    <!-- Hamburger Toggle Button -->
-    <button class="menu-toggle" onclick="toggleMobileMenu()">&#9776;</button>
-
-    <div class="nav-links" id="navLinks">
-        <a href="/">Home</a>
-        <a href="/about">About Us</a>
-        <a href="/hospitals">Hospitals</a>
-        <a href="/doctors">Doctors</a>
-        <a href="/treatments">Treatments</a>
-        <a href="/cost-estimator">Cost Estimator</a>
-        <a href="/admin" style="color: var(--gray); font-size: 0.85rem;">Admin Portal</a>
-        <a href="/contact" class="btn-nav">Free Consultation</a>
-    </div>
-</nav>
-
-<script>
-    function toggleMobileMenu() {
-        const nav = document.getElementById('navLinks');
-        nav.classList.toggle('active');
-    }
-</script>
     <main class="main-container">
         <h2 class="section-title">About GlobalCare Health</h2>
         <p style="text-align: center; color: var(--gray); max-width: 700px; margin: 0 auto 50px;">We are a premier medical travel concierge dedicated to breaking down geographic barriers to elite healthcare.</p>
-        
+
         <div class="grid-3">
             <div class="card">
                 <h3>Our Mission</h3>
@@ -55,7 +22,4 @@
             </div>
         </div>
     </main>
-</body>
-</html>
-
 {% endblock %}

@@ -1,25 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}GlobalCare Health{% endblock %}
+{% block title %}Patient Dashboard - GlobalCare Health{% endblock %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Dashboard - GlobalCare Health</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <nav class="navbar">
-        <a href="/" class="logo">GLOBALCARE HEALTH</a>
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/logout" style="color: #ef4444; font-weight: bold;">Logout</a>
-        </div>
-    </nav>
-
     <main class="main-container" style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
         <h2 style="margin-bottom: 10px;">Welcome, {{ user['name'] }}!</h2>
         <p style="color: var(--gray); margin-bottom: 30px;">Manage your account details and review your medical travel inquiries.</p>
@@ -37,7 +20,4 @@
             <a href="/contact" class="btn-primary" style="display: inline-block; margin-top: 15px; padding: 10px 20px; background: var(--primary); color: white; border-radius: 6px; text-decoration: none;">Request Evaluation</a>
         </div>
     </main>
-</body>
-</html>
-
 {% endblock %}
